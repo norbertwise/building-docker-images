@@ -1,0 +1,54 @@
+pipeline{
+agent{
+    docker
+    {image 'node:19-alpine', 'jdk17'
+    reuseNode: true
+    }
+}
+stages{
+    stage('git checkout'){
+        steps{
+            sh 'echo passed'
+            // git branch:'main' , url: 'https://github.com/norbertwise/building-docker-images.git'
+        }
+       
+    }
+
+    
+    stage('install dependencies'){
+        steps{
+            sh 'ls -la'
+            sh 'npm install'
+            sh 'ls -la'
+        }
+    }
+
+stage('trivy fs scan'){
+        steps{
+            sh "trivy fs . > trivyfs.txt"
+
+        }
+    }
+
+
+    stage('docker build and tag'){
+        steps{
+            sh '''
+            docker build -t my-app:v2.0 .
+            docker tag my-app patnorbs/my-app:v2.0
+            '''
+
+             }
+            
+        }
+
+ 
+    stage('trivy'){
+        steps{
+            sh 'trivy image patnorbs/my-app:v2.0 > trivyimage.txt'
+        }
+    }
+}
+
+
+}
