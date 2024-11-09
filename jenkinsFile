@@ -4,6 +4,9 @@ agent{
     {image 'node:19-alpine', 'jdk17'
     reuseNode: true
     }
+    environment{
+                DOCKERHUB_CREDENTIALS = credentials('dockerbuild')
+            }
 }
 stages{
     stage('git checkout'){
@@ -43,9 +46,7 @@ stage('trivy fs scan'){
         }
 
         stage(login to dockerhub){
-            environment{
-                DOCKERHUB_CREDENTIALS = credentials('dockerbuild')
-            }
+            
             step{
                  sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 
