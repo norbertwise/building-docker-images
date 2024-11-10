@@ -19,7 +19,7 @@ stages{
 }
 
 
-stage('npm install'){
+stage('install dependencies'){
     steps{
         sh 'npm install'
     }
