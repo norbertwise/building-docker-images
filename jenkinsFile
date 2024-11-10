@@ -26,7 +26,7 @@ stage('npm install'){
 }
 
 
-stage(docker build and tag){
+stage('docker build and tag'){
     steps{
         sh'''
         docker build -t my-app:v3.0 .
