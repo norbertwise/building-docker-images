@@ -1,5 +1,9 @@
 pipeline{
-    agent any
+    agent{
+        docker{
+            image 'node:alpine-19'
+            
+        }
     }
 
 stages{
@@ -9,5 +13,7 @@ stages{
         }
     }
 
+
 }
+
 }
