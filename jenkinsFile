@@ -8,9 +8,10 @@ pipeline{
 
 stages{
     stage('git checkout'){
-        git branch:'main' , url:'https://github.com/norbertwise/building-docker-images.git'
+        steps{
+            git branch:'main' , url:'https://github.com/norbertwise/building-docker-images.git'
+        }
     }
-}
 
 
 }
