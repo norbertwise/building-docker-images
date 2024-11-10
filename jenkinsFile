@@ -3,6 +3,8 @@ pipeline{
         docker{
             image 'node:19-alpine'
             
+            image 'node:19-alpine'
+            
         }
     }
 
@@ -26,5 +28,7 @@ stage(docker build and tag){
 
 
 
+
+}
 
 }
