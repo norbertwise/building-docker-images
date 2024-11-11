@@ -23,6 +23,25 @@ stages{
 
 }
 
+stage('build and tag'){
+    steps{
+        sh '''
+        docker build -t my-app:v3.1 .
+        docker tag my-app patnorbs/my-app:v3.1
+        '''
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
