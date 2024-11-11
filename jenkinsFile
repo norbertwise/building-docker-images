@@ -1,10 +1,7 @@
 pipeline{
     agent{
         docker{
-            image 'node:19-alpine'
-            
-        
-            
+            image 'node:19-alpine'    
         }
     }
 
@@ -19,9 +16,12 @@ stages{
 }
 
 
-stage('install dependencies'){
+stage('check dependencies'){
     steps{
-        sh 'npm install'
+        sh '''
+        echo 'check version'
+        npm --version
+        '''
     }
 }
 
