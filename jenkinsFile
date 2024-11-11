@@ -23,7 +23,7 @@ stages{
 
 }
 
-stage('build and tag'){
+stage('build'){
     steps{
         sh '''
         docker build -t my-app:v3.1 .
