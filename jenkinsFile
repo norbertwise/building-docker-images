@@ -9,22 +9,19 @@ stages{
     stage('git checkout'){
         steps{
             git branch:'main' , url:'https://github.com/norbertwise/building-docker-images.git'
+
+        sh '''
+        echo 'check version'
+        npm --version
+        '''
+
+
+
         }
     }
 
 
 }
-
-
-stage('check dependencies'){
-    steps{
-        sh '''
-        echo 'check version'
-        npm --version
-        '''
-    }
-}
-
 
 
 }
