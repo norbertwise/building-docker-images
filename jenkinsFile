@@ -5,11 +5,7 @@ pipeline{
         }
     }
 
-   stage('Initialize'){
-        def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-    } 
-
+   
 stages{
     stage('git checkout'){
         steps{
@@ -25,7 +21,21 @@ stages{
         }
     }
 
- 
+ stage('Initialize'){
+    steps{
+        sh '
+        echo 'initializing'
+        '
+        script{
+             def dockerHome = tool 'myDocker'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+
+
+        }
+    }
+       
+    } 
+
 
 
 
