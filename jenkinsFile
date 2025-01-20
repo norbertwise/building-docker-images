@@ -1,67 +1,30 @@
-pipeline{
-    agent{
-        docker{
-            image 'node:19-alpine'    
-        }
+pipeline {
+agent{
+    docker{ 
+    image 'node:19-alpine'
     }
+}
 
-   
 stages{
-    stage('git checkout'){
+    stage('git checking'){
+
         steps{
-            git branch:'main' , url:'https://github.com/norbertwise/building-docker-images.git'
+            git branch :'main' , url:'https://github.com/norbertwise/building-docker-images.git'
 
-        sh '''
-        echo 'check version'
-        npm --version
-        '''
-
-
+            sh'''
+            echo 'check version'
+            npm version
+            '''
 
         }
     }
 
- stage('Initialize'){
-    steps{
-        sh '
-        echo 'initializing'
-        '
-        script{
-             def dockerHome = tool 'myDocker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-
-
-        }
-    }
-       
-    } 
-
-
-
-
-stage('build and tag'){
-    steps{
-        sh '''
-        docker build -t my-app:v3.1 .
-        docker tag my-app patnorbs/my-app:v3.1
-        '''
-    }
-}
-
 
 }
 
 
 
-
-
-
-
-
-
-
-
-
 }
+
 
 
