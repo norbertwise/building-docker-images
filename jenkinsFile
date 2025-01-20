@@ -1,10 +1,24 @@
+<<<<<<< HEAD
 pipeline {
 agent{
     docker{ 
     image 'node:19-alpine'
+=======
+pipeline{
+agent{
+    docker{
+          image 'node:19-alpine'
+    }
+}
+stages{
+stage("git checkout"){
+    steps{
+        git branch:"main", url:"https://github.com/norbertwise/building-docker-images.git"
+>>>>>>> 2fc62e5df299261d619c5aba89ad29ccb7c8af95
     }
 }
 
+<<<<<<< HEAD
 stages{
     stage('git checking'){
 
@@ -20,11 +34,38 @@ stages{
     }
 
 
+=======
+ sh '''
+        echo 'check version'
+        npm --version
+        '''
+
+
+>>>>>>> 2fc62e5df299261d619c5aba89ad29ccb7c8af95
 }
 
 
 
+<<<<<<< HEAD
+=======
+
+
 }
 
 
 
+
+>>>>>>> 2fc62e5df299261d619c5aba89ad29ccb7c8af95
+}
+
+
+
+<<<<<<< HEAD
+=======
+
+
+
+
+
+}
+>>>>>>> 2fc62e5df299261d619c5aba89ad29ccb7c8af95
