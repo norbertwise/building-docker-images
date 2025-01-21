@@ -11,13 +11,6 @@ stages{
         }
     }
 
-stage('docker build'){
-    steps{
-        
-      sh 'docker build -t web-app:latest .'
-    }
-}
-
 
 
 }
