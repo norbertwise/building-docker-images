@@ -10,15 +10,21 @@ stages{
             git branch : 'main' , url : 'https://github.com/norbertwise/building-docker-images.git'                                   
         }
     }
-}
 
 stage('docker build'){
-steps{
-sh ''
-docker build -t web-app:v1.0 .
-''    
+    steps{
+        sh
+        ''
+        docker build -t wep-app:v1.0 .
+        ''
+    }
 }
+
+
+
 }
+
+
 
 
 
