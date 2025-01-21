@@ -13,10 +13,9 @@ stages{
 
 
 stage('docker build'){
-    agent any{
-        steps{
-            sh 'docker build -t web-app:v1.0 .'
-        }
+    steps{
+        
+      sh 'docker build -t web-app:latest .'
     }
 }
 
