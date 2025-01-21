@@ -13,7 +13,7 @@ stages{
 
 stage('docker build'){
     steps{
-        sh
+        
       sh 'docker build -t web-app:latest .'
     }
 }
