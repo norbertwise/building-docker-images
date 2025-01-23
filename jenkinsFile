@@ -3,9 +3,11 @@ pipeline{
         docker{
             image 'node:19-alpine'
         }
-        environment {
-        LOGIN_CREDS = credentials('dockerbuild')
+        
     }
+
+    environment {
+        LOGIN_CREDS = credentials('dockerbuild')
     }
 
 stages{
