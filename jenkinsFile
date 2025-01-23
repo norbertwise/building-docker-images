@@ -19,6 +19,7 @@ stage('docker  build'){
                          withCredentials([usernamePassword(credentialsId: 'dockerbuild', passwordVariable: 'password', usernameVariable: 'username')]){
                          sh '''
                             echo "${password} | docker login -u ${username} --password-stdin"
+                        docker build -t web-app:v1.0 .
                          '''
                              
         
