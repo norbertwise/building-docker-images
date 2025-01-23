@@ -3,7 +3,11 @@ pipeline{
         docker{
             image 'node:19-alpine'
         }
+        environment {
+        LOGIN_CREDS = credentials('dockerbuild')
     }
+    }
+
 stages{
     stage('git code'){
         steps{
@@ -11,20 +15,12 @@ stages{
         }
     }
 
-stage('docker operations'){
-    steps{
-       
-        withCredentials([usernamePassword(credentialsId: 'dockerbuild', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) 
-          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker build -t web-app:v1.0 .'
-         
     }
 }
 
 
 
 
-}
 
 
-}
+
