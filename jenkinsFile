@@ -19,9 +19,8 @@ stages{
 
 stage('docker  build'){
     steps{
-        sh '
-        docker build -t web-app:v1.0
-        '
+        sh 'docker build -t web-app:v1.0 .'
+        
     }
 }
 
