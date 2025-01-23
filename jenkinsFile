@@ -6,7 +6,6 @@ pipeline{
         
     }
 
-   
 
 stages{
     stage('git code'){
@@ -33,7 +32,7 @@ stage('docker  build'){
 
 
 
-
+}
     
 }
 
