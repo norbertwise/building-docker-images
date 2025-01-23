@@ -12,11 +12,24 @@ stages{
     }
 
 
-stage('docker build'){
+
+stage('docker build and push'){
     steps{
-        
+       
+withCredentials([usernamePassword(credentialsId: 'dockerbuild', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          sh 'docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}'
+            
       sh 'docker build -t web-app:latest .'
+      
+      }
+
+
+       }
     }
+
+}
+
+
 }
 
 
@@ -24,11 +37,5 @@ stage('docker build'){
 
 
 
-}
 
 
-
-
-
-
-}
