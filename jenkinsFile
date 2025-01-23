@@ -20,8 +20,7 @@ stage('docker  build'){
                          sh '''
                             echo "${password} | docker login -u ${username} --password-stdin"
                          '''
-                         def app = docker.build("docker-image")
-                         app.push("latest")    
+                             
         
     }
 }
