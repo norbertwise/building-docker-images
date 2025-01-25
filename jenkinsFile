@@ -1,7 +1,7 @@
 node {
     checkout scm
  DOCKER_IMAGE = 'node:19-alpine'
-    docker.withRegistry('https://registry.docker.hub.com', 'dockerbuild') {
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') {
 
         def customImage = docker.build("patnorbs/web-app:v1.0")
 
