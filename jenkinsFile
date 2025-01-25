@@ -4,15 +4,12 @@ pipeline{
             image 'node:19-alpine'
         }
     }
-stages{
-    stage('build')
-        environment{
+    environment{
             DOCKER_IMAGE = 'node:19-alpine'
             REGISTRY_CREDNTIALS = credentials('dockerbuild')
         }
-    
-    
-    {
+stages{
+    stage('build'){
         steps{
         scripts{
    
