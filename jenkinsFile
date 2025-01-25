@@ -14,13 +14,13 @@ stages{
         scripts{
    
         checkout scm
+        def customImage = docker.build("patnorbs/web-app .")
 
-         docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') {
-
-        def customImage = docker.build("patnorbs/web-app")
-
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') 
+customImage.push()}
+        
         /* Push the container to the custom Registry */
-        customImage.push()
+        
     
         }
         
@@ -30,5 +30,5 @@ stages{
 }
 
 
-}
-}
+
+
