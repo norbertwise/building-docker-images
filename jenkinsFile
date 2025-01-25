@@ -1,41 +1,14 @@
-pipeline{
-    agent{
-        docker{
-            image 'node:19-alpine'
-        }
-        
-    }
+node {
+    checkout scm
 
+    docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') {
 
-stages{
-    stage('git code'){
-        steps{
-            git branch : 'main' , url : 'https://github.com/norbertwise/building-docker-images.git'                                   
-        }
-    }
+        def customImage = docker.build("patnorbs/web-app")
 
-stage('docker  build'){
-    steps{
-                         withCredentials([usernamePassword(credentialsId: 'dockerbuild', passwordVariable: 'password', usernameVariable: 'username')]){
-                         sh '''
-                            echo "${password} | docker login -u ${username} -p ${password}"
-                        docker build -t web-app:v1.0 .
-                         '''
-                             
-        
+        /* Push the container to the custom Registry */
+        customImage.push()
     }
 }
-
-
-
-    }
-
-
-
-}
-    
-}
-
 
 
 
