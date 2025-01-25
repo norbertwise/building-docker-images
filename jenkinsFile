@@ -4,16 +4,10 @@ pipeline{
             image 'node:19-alpine'
         }
     }
-
-
-
-
-
-
-
-
-node {
-    checkout scm
+stages{
+    stage('build'){
+        steps{
+        checkout scm
 
     docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') {
 
@@ -21,11 +15,11 @@ node {
 
         /* Push the container to the custom Registry */
         customImage.push()
+    
+        }
     }
 }
 
 
 }
-
-
-
+}
