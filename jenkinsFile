@@ -1,33 +1,21 @@
-pipeline{
-    agent{
-        docker{
-            image 'node:19-alpine'
-        }
-    }
-    environment{
-            DOCKER_IMAGE = 'node:19-alpine'
-            REGISTRY_CREDNTIALS = credentials('dockerbuild')
-        }
-stages{
-    stage('build'){
-        steps{
-        scripts{
-   
-        checkout scm
-        def customImage = docker.build("patnorbs/web-app .")
+node {
+    checkout scm
+ DOCKER_IMAGE = 'node:19-alpine'
+    docker.withRegistry('https://registry.docker.hub.com', 'dockerbuild') {
 
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') 
-customImage.push()}
-        
+        def customImage = docker.build("patnorbs/web-app:v1.0")
+
         /* Push the container to the custom Registry */
-        
-    
-        }
-        
-    
-        }
+        customImage.push()
     }
 }
+
+
+
+
+
+
+
 
 
 
