@@ -6,15 +6,27 @@ pipeline{
     }
 stages{
     stage('build'){
+        environment{
+            DOCKER_IMAGE = 'node:19-alpine'
+            REGISTRY_CREDNTIALS = credentials('dockerbuild')
+        }
+    }
+    
+    {
         steps{
+        scripts{
+   
         checkout scm
 
-    docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') {
+         docker.withRegistry('https://registry.hub.docker.com', 'dockerbuild') {
 
         def customImage = docker.build("patnorbs/web-app")
 
         /* Push the container to the custom Registry */
         customImage.push()
+    
+        }
+        
     
         }
     }
