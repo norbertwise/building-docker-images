@@ -26,7 +26,7 @@ stage('docker build & push'){
      }
    steps{
     scripts{
-        docker.withRegistry('https://registry.hub.docker.com', 'docker_cred') 
+        docker.withRegistry('https://registry.hub.docker.com', "docker_cred") 
         
         def customImage = docker.build("patnorbs/myapp:v1.0"){
             customImage.push()
