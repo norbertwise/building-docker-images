@@ -21,6 +21,7 @@ stage('checkout'){
 
 stage('docker build & push'){
     steps{
+        docker.withRegistry('https://registry.hub.docker.com', "docker_cred") 
         withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker build -t webapp:v1.2 .'
