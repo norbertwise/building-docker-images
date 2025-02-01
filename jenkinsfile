@@ -4,4 +4,15 @@ pipeline{
             image'node:19-alpine'
         }
     }
+
+stages{
+    stage('test'){
+        steps{
+            echo 'node version'
+            sh 'node --version'
+        }
+    }
+}
+
+
 }
