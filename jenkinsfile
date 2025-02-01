@@ -20,10 +20,9 @@ stage('checkout'){
 }
 
 stage('docker build & push'){
-    environment{
-         DOCKER_IMAGE = 'node:19-alpine'
+    DOCKER_IMAGE = 'node:19-alpine'
     docker.withRegistry('https://registry.hub.docker.com', 'docker_cred') 
-    }
+    
 }
 
 
