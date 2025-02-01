@@ -16,9 +16,15 @@ stage('checkout'){
     steps{
         git branch : 'main' , url : 'https://github.com/norbertwise/building-docker-images.git'
     }
+
 }
 
-
+stage('docker build & push'){
+    environment{
+         DOCKER_IMAGE = 'node:19-alpine'
+    docker.withRegistry('https://registry.hub.docker.com', 'docker_cred') 
+    }
+}
 
 
 }
