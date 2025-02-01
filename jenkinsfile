@@ -22,9 +22,20 @@ stage('checkout'){
 stage('docker build & push'){
     environment{
          DOCKER_IMAGE = 'node:19-alpine'
-    docker.withRegistry = 'https://registry.hub.docker.com' 
-    }
+    REDISTRY_CREDENTIALS = credentials('docker_cred')  
+     }
+   steps{
+    scripts{
+        docker.withRegistry('https://registry.hub.docker.com', 'docker_cred') 
+        
+        def customImage = docker.build("patnorbs/myapp:v1.0"){
+            customImage.push()
+        }
+
    
+    }
+
+   }
     
 }
 
