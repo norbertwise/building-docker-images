@@ -21,7 +21,7 @@ stage('checkout'){
 
 stage('docker build & push'){
     environment{
-         DOCKER_IMAGE = 'node:19-alpine'
+         DOCKER_IMAGE = "node:19-alpine"
     REDISTRY_CREDENTIALS = credentials('docker_cred')  
      }
    steps{
