@@ -21,6 +21,7 @@ pipeline{
 						sh 'docker login -u dockerhubusername -p dockerhubpasswd'
 						sh 'docker build -t dockapp:v1.12 .'
 						sh 'docker push patnorbs/dockapp:v1.12'
+						}
 				}
 			}
 		}
