@@ -7,8 +7,6 @@ pipeline{
     }
 
 	
-	
-
 	stages {
 	    
 	    stage('checkout') {
@@ -18,36 +16,14 @@ pipeline{
 			}
 		}
 
-		stage('Build') {
+		stage(' login docker') {
 
 			steps {
-				sh 'docker build -t versiondapp:latest .'
-			}
-		}
-
-		stage('Login') { environment{
-			DOCKER_IMAGE = 'node:19-alpine'
-			REGISTRY_CREDENTIALS = credentials('docker_cred')
-		}
-
-			steps {
-				scripts{
-					def customImage = docker.build("patnorbs/myapp:v1.0")
-					    docker.withRegistry('https://registry.hub.docker.com') {
-					customImage.push()		
-						}
-				}
-		
+				REGISTRY_CREDENTIALS = credentials('docker_cred')
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
-		
 	}
 
-	post {
-		always {
-			sh 'docker logout'
-		}
-    }
 }
