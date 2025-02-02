@@ -8,6 +8,8 @@ pipeline{
 
 	environment {
 		DOCKERHUB_CREDENTIALS = credentials('docker_cred')
+		docker.withRegistry('https://registry.hub.docker.com', 'docker_cred') 
+
 	}
 
 	stages {
