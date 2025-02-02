@@ -7,7 +7,7 @@ pipeline{
 	}
 
 	environment{
-		withDockerRegistry(credentialsId: 'docker_cred', url: 'https://registry.hub.docker.com') {
+		withDockerRegistry(credentialsId = 'docker_cred', url: 'https://registry.hub.docker.com') {
     
 }			
 
