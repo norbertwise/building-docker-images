@@ -5,7 +5,9 @@ pipeline{
             image 'node:19-alpine'
         }
     }
-
+environment{
+		REGISTRY_CREDENTIALS = credentials('docker_cred')
+}
 	
 	stages {
 	    
@@ -19,7 +21,7 @@ pipeline{
 		stage(' login docker') {
 
 			steps {
-				REGISTRY_CREDENTIALS = credentials('docker_cred')
+			
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
