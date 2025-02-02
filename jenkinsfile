@@ -4,11 +4,7 @@ pipeline{
         docker{
             image 'node:19-alpine'
         }
-    }
-environment{
-		REGISTRY_CREDENTIALS = credentials('docker_cred')
-}
-	
+	}
 	stages {
 	    
 	    stage('checkout') {
@@ -18,14 +14,19 @@ environment{
 			}
 		}
 
-		stage(' login docker') {
-
-			steps {
-			
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+		stage(' docker build') {
+			steps{
+				scripts{
+					sh 'docker build -t dockweb:v1.12 .'
+				}
 			}
+		}
+
+			
+			
+				
+			
 		}
 
 	}
 
-}
