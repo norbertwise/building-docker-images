@@ -33,7 +33,7 @@ pipeline{
 			steps {
 				scripts{
 					def customImage = docker.build("patnorbs/myapp:v1.0")
-					    docker.withRegistry('https://registry.hub.docker.com', 'docker_cred') {
+					    docker.withRegistry('https://registry.hub.docker.com') {
 					customImage.push()		
 						}
 				}
