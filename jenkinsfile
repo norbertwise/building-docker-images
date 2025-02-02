@@ -20,6 +20,8 @@ pipeline{
 	stage('docker login'){
 		steps{// This step should not normally be used in your script. Consult the inline help for details.
 		withDockerRegistry(credentialsId: 'docker_cred', url: 'https://registry.hub.docker.com') 
+		withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'passwd', usernameVariable: 'username')]) 
+    // some block
 	
 			}
 			}
