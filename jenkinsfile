@@ -14,16 +14,12 @@ pipeline{
 			}
 		}
 
-		stage(' docker build') {
-			steps{
-				scripts{
-					withCredentials([usernamePassword(credentialsId: 'docker_cred', passwordVariable: 'dockerhubpasswd', usernameVariable: 'dockerhubusername')]) 
-						
+		
 						
 						
 				}
 			}
-		}
+		
 
 			
 			
