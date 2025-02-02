@@ -5,6 +5,13 @@ pipeline{
             image 'node:19-alpine'
         }
 	}
+
+	environment{
+		withDockerRegistry(credentialsId: 'docker_cred', url: 'https://registry.hub.docker.com') {
+    
+}			
+
+	}
 	stages {
 	    
 	    stage('checkout') {
@@ -23,7 +30,6 @@ pipeline{
 			}
 		
 
-			
 			
 				
 			
