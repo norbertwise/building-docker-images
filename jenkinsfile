@@ -6,11 +6,8 @@ pipeline{
         }
     }
 
-	environment {
-		DOCKERHUB_CREDENTIALS = credentials('docker_cred')
-		docker.withRegistry = {'https://registry.hub.docker.com'}
-
-	}
+	
+	
 
 	stages {
 	    
@@ -31,6 +28,9 @@ pipeline{
 		stage('Login') {
 
 			steps {
+DOCKERHUB_CREDENTIALS = credentials('docker_cred')
+		docker.withRegistry = {'https://registry.hub.docker.com'}
+
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
