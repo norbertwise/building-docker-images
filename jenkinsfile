@@ -6,26 +6,33 @@ pipeline{
         }
 	}
 
-	environment{
-		withDockerRegistry = (credentialsId 'docker_cred', url: 'https://registry.hub.docker.com') 
-    
-	}
+	
 	stages {
 	    
 	    stage('checkout') {
 
 			steps {
 				checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/norbertwise/building-docker-images.git']])
-			sh 'npm --verbose install'
+			}
 			
 			}
+
+	stage('docker login'){
+		steps{// This step should not normally be used in your script. Consult the inline help for details.
+		withDockerRegistry(credentialsId: 'docker_cred', url: 'https://registry.hub.docker.com') 
+	
+			}
+			}
+	}
+
+		
 		}
 
 		
 						
 						
-				}
-			}
+				
+			
 		
 
 			
