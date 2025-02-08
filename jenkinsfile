@@ -7,7 +7,7 @@ pipeline{
 	}
 environment {
         // Define Docker Hub credentials ID stored in Jenkins credentials store
-        DOCKERHUB_CREDENTIALS = 'docker_cred'  
+        docker_id = 'docker_cred'  
         IMAGE_NAME = 'webapp'
         IMAGE_TAG = 'latest'
     }
