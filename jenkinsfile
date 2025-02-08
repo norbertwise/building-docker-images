@@ -4,6 +4,14 @@ pipeline {
         docker { image 'alpine:latest'  }
     }
 
+	environment {
+        // Define Docker Hub credentials ID stored in Jenkins credentials store
+        new_id = 'docker_credentials'  
+        IMAGE_NAME = 'webapp'
+        IMAGE_TAG = 'latest'
+    }
+
+
     stages {
         stage('Test') {
             steps {
@@ -20,5 +28,29 @@ pipeline {
 
 
     }
+
+
+stage('docker build & push'){
+	steps{
+		script {
+                    // Load Docker Hub credentials from Jenkins credentials store
+                    withCredentials([usernamePassword(credentialsId: docker_credentials, usernameVariable: 'DOCKERHUB_USERNAME', 
+passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        // Login to Docker Hub
+                        sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
+                        // Build Docker image
+                        sh "docker build  -t ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG} ."
+                        // Tag the Docker image
+                        sh "docker tag ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG} index.docker.io/${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
+                        // Push Docker image to Docker Hub
+                        sh "docker push index.docker.io/${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${IMAGE_TAG}"
+                    }
+                }
+            }
+        }
+
+
+
+
 }
 }
