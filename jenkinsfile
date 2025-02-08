@@ -1,10 +1,6 @@
 pipeline{
 
-	agent {
-        docker{
-            image 'node:19-alpine'
-        }
-	}
+	agent any
 environment {
         // Define Docker Hub credentials ID stored in Jenkins credentials store
         new_id = 'docker_credentials'  
